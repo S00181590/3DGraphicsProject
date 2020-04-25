@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Project
+namespace GraphicsProject
 {
 #if WINDOWS || LINUX
     /// <summary>
