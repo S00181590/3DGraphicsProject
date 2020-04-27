@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace GraphicsProject
 {
@@ -12,6 +13,8 @@ namespace GraphicsProject
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        List<CustomEffectModel> models = new List<CustomEffectModel>();
+        Camera mainCamera;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
