@@ -46,9 +46,11 @@
     <Compile Include="Game1.cs" />
     <Compile Include="GameObject3D.cs" />
     <Compile Include="GameUtilities.cs" />
+    <Compile Include="InputEngine.cs" />
     <Compile Include="Material.cs" />
     <Compile Include="MeshTag.cs" />
     <Compile Include="MixedLight.cs" />
+    <Compile Include="ModelDataExtractor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleModel.cs" />

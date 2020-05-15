@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Graphics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace GraphicsProject
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            mainCamera = new Camera("cam", Vector3.Zero, Vector3.Forward);
         }
 
         /// <summary>
@@ -30,7 +33,7 @@ namespace GraphicsProject
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            mainCamera.Initialize();
             base.Initialize();
         }
 
@@ -43,6 +46,11 @@ namespace GraphicsProject
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            mainCamera.LoadContent();
+
+            models.Add(new MixedLight("table0", "WorkBench", new Vector3(0, 0, 0)));
+
+            models.ForEach(go => go.LoadContent());
             // TODO: use this.Content to load your game content here
         }
 
@@ -65,6 +73,7 @@ namespace GraphicsProject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            mainCamera.Update();
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -78,6 +87,7 @@ namespace GraphicsProject
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            mainCamera.Draw(mainCamera);
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

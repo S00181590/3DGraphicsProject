@@ -7,10 +7,10 @@
 	#define PS_SHADERMODEL ps_4_0_level_9_1
 #endif
 
-float3x3 World,View,Projection;
+float4x4 World,View,Projection;
 
 texture Texture;
-bool TextureEnabled = false;
+bool TextureEnabled = true;
 //float3 Normal = float3(0, 0, 0);
 
 float3 AmbientColor = float3(.15, .15, .15);
@@ -33,7 +33,7 @@ sampler TextureSampler = sampler_state
 
 struct VertexShaderInput
 {
-	float3 Position : SV_Position0;
+	float4 Position : SV_Position0;
 	float2 UV : TEXCOORD0;
 	float3 Normal : NORMAL0;
 	/*float4 LPosition1 : SV_POSITION1;
@@ -45,9 +45,9 @@ struct VertexShaderInput
 
 struct VertexShaderOutput
 {
-	float3 Position : SV_Position0;
+	float4 Position : SV_Position0;
 	float2 UV: TEXCOORD0;
-	float3 Normal : TEXCOORD1;
+	float4 Normal : TEXCOORD1;
 	/*float4 LPosition1 : SV_POSITION1;
 	float4 LPosition2 : SV_POSITION2;*/
 
@@ -60,8 +60,8 @@ VertexShaderOutput MainVS(in VertexShaderInput input)
 {
 	VertexShaderOutput output;
 
-	float3 worldPosition = mul(input.Position, World);
-	float3 viewPosition = mul(worldPosition, View);
+	float4 worldPosition = mul(input.Position, World);
+	float4 viewPosition = mul(worldPosition, View);
 	/*float4 worldPosition1 = mul(input.LPosition1, World);
 	float4 viewPosition1 = mul(worldPosition1, View);
 	float4 worldPosition2 = mul(input.LPosition2, World);

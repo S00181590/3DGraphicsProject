@@ -34,20 +34,32 @@ namespace GraphicsProject
 
         public MixedLight(string id, string asset, Vector3 position) : base(id, asset, position)
         {
-
+            Material = new Material();
         }
 
         public override void LoadContent()
         {
+            
+            //Error: Null reference not set to an instance of an object
+            //No idea why this error is occuring.
+            //Everything seems in order
             Material = new LambertMaterial()
             {
-                Texture = GameUtilities.Content.Load<Texture2D>("Texture\\Stone"),
+                Texture = GameUtilities.Content.Load<Texture2D>("Texture/Stone.jpg"),
                 LightColor = Color.White,
                 Direction = new Vector3(1, -1, 1),
-                AmbientColor = Color.DarkGray
+                AmbientColor = Color.DarkGray,
+                DiffuseColor = Color.Red
             };
 
+            CustomEffect = GameUtilities.Content.Load<Effect>("effects/MixedLightEffect.fx");
+
             base.LoadContent();
+        }
+
+        public override void Update()
+        {
+            base.Update();
         }
     }
 }
